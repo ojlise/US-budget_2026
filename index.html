@@ -282,17 +282,17 @@ footer .cols{display:grid; grid-template-columns:1fr 1fr; gap:30px}
     <div class="sec-head">
       <span class="eyebrow">01 · The gap</span>
       <h2>Revenue climbed back. Spending never came down.</h2>
-      <p class="note">Receipts collapsed and rebounded on the 2021&#8211;22 inflation and capital-gains surge, dipped in FY2023, and have risen since. Outlays fell from their pandemic peak but flattened at a level about $2.4T above FY2019. The shaded band is the deficit. Measured against GDP — the right frame for comparing years — the gap has been stuck near 6% for four straight years, well above the 3.8% fifty-year average.</p>
+      <p class="note">Receipts collapsed and rebounded on the 2021&#8211;22 inflation and capital-gains surge, dipped in FY2023, and have risen since. Outlays fell from their pandemic peak but flattened at a level about $2.4T above FY2019. The shaded band is the deficit. Measured against GDP — the right frame for comparing years — the gap has been stuck near 6% every year since FY2023, well above the 3.8% fifty-year average. The dashed FY2026 point is CBO&#8217;s February baseline; its July update raised the full-year deficit to $2.1T after the tariff ruling (section 05).</p>
     </div>
     <div class="duo">
       <div class="plot">
         <div class="plot-title">Receipts and outlays</div>
-        <div class="plot-sub">$ trillions · FY2026 = CBO projection</div>
+        <div class="plot-sub">$ trillions · FY2026 = CBO February 2026 baseline ($1.9T deficit)</div>
         <div id="c-gap-abs"></div>
       </div>
       <div class="plot">
         <div class="plot-title">Same figures as a share of the economy</div>
-        <div class="plot-sub">percent of GDP · FY2026 = CBO projection</div>
+        <div class="plot-sub">percent of GDP · FY2026 = CBO February 2026 baseline</div>
         <div id="c-gap-gdp"></div>
       </div>
     </div>
@@ -691,7 +691,7 @@ function lineChart(mountId, cfg){
       style:'fill:var(--ink-3);font-family:var(--fm);font-size:9.5px'}, "'"+String(y).slice(2)));
   });
   svg.appendChild(el('text', {x:X(yrs.length-1), y:M.t+ih+29, 'text-anchor':'middle',
-    style:'fill:var(--ink-3);font-family:var(--fm);font-size:8px;letter-spacing:.06em'}, 'proj.'));
+    style:'fill:var(--ink-3);font-family:var(--fm);font-size:8px;letter-spacing:.06em'}, 'Feb. proj.'));
 
   const cross = el('line', {x1:0,x2:0,y1:M.t,y2:M.t+ih, style:'stroke:var(--rule-2);stroke-width:1', opacity:'0'});
   svg.appendChild(cross);
