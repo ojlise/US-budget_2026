@@ -146,6 +146,18 @@ section:last-of-type{border-bottom:0}
 .plot-sub{font-family:var(--fm); font-size:.68rem; color:var(--ink-3); margin-bottom:10px}
 .plot svg{display:block; width:100%; height:auto; overflow:visible}
 .duo{display:grid; grid-template-columns:1fr 1fr; gap:18px}
+
+/* ---- "All other outlays" drill-down ---- */
+.ao-row{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr) 64px;gap:12px;align-items:center;padding:7px 0;border-top:1px solid var(--rule)}
+.ao-row:first-child{border-top:0}
+.ao-name{font-size:.86rem;color:var(--ink)}
+.ao-name small{display:block;font-size:.74rem;color:var(--ink-3);margin-top:2px;line-height:1.35}
+.ao-track{height:12px;position:relative}
+.ao-bar{position:absolute;top:0;height:12px;border-radius:2px;background:var(--s8)}
+.ao-bar.neg{background:var(--ink-3)}
+.ao-val{font-family:var(--fm);font-size:.8rem;text-align:right;font-variant-numeric:tabular-nums;color:var(--ink)}
+.ao-row.tot{border-top:1px solid var(--rule-2);font-weight:600}
+@media (max-width:560px){.ao-row{grid-template-columns:minmax(0,1fr) 58px}.ao-track{grid-column:1 / -1;order:3}.ao-row.tot > div:nth-child(2){display:none}}
 @media (max-width:760px){ .duo{grid-template-columns:1fr} .duo .plot + .plot{margin-top:0} }
 
 .legend{display:flex; flex-wrap:wrap; gap:4px 14px; margin-top:12px; padding-top:11px; border-top:1px solid var(--rule)}
@@ -333,6 +345,13 @@ footer .cols{display:grid; grid-template-columns:1fr 1fr; gap:30px}
       <div class="legend" id="lg-out"></div>
     </div>
 
+    <div class="plot">
+      <div class="plot-title">What is inside &#8220;All other outlays&#8221; — FY2025</div>
+      <div class="plot-sub">$ billions · the red segment on the chart above ($1,283B), broken down by agency</div>
+      <div id="c-allother" style="margin-top:10px"></div>
+      <p class="note" style="margin-top:10px">Agency totals from the Monthly Treasury Statement for September 2025. Lines marked &#8220;excl.&#8221; have the programs already shown separately above taken out: Medicare and Medicaid from HHS, Social Security benefits from SSA, and net interest and refundable tax credits from Treasury. The rows sum to $1,283B.</p>
+    </div>
+
     <div class="callout">
       <div class="ch">Read the orange band on the revenue chart</div>
       <p>Customs duties went from $77B in FY2024 to $195B in FY2025 — a 153% jump, and the largest proportional change anywhere in the budget. It did not last: in February 2026 the Supreme Court struck down the IEEPA tariffs, and Treasury had refunded roughly $110B by August. CBO has since cut expected FY2026 tariff revenue by about $250B, or 60%.</p>
@@ -378,7 +397,7 @@ footer .cols{display:grid; grid-template-columns:1fr 1fr; gap:30px}
     </div>
     <div class="tscroll">
       <table>
-        <caption>Volatile line items · $ billions · &#8212; denotes negligible</caption>
+        <caption>Volatile line items · $ billions · &#8212; = negligible, or no longer reported as a separate line by CBO</caption>
         <thead>
           <tr><th scope="col">Line item</th><th scope="col">2021</th><th scope="col">2022</th><th scope="col">2023</th><th scope="col">2024</th><th scope="col">2025</th></tr>
         </thead>
@@ -480,6 +499,7 @@ footer .cols{display:grid; grid-template-columns:1fr 1fr; gap:30px}
           <li><a href="https://www.cbo.gov/publication/58592">CBO, <em>Monthly Budget Review: Summary for Fiscal Year 2022</em></a> — FY2020&#8211;22 detail</li>
           <li><a href="https://www.cbo.gov/publication/61984">CBO, <em>Monthly Budget Review: August 2026</em></a> — FY2026 through August</li>
           <li><a href="https://www.cbo.gov/publication/62105">CBO, <em>The Budget and Economic Outlook: 2026 to 2036</em></a> — projections</li>
+          <li><a href="https://fiscaldata.treasury.gov/datasets/monthly-treasury-statement/">U.S. Treasury, <em>Monthly Treasury Statement</em>, September 2025, Table 3</a> — FY2025 outlays by agency</li>
           <li><a href="https://www.cbo.gov/publication/61983">CBO, <em>Monthly Budget Review: July 2026</em></a> — revised FY2026 deficit estimate</li>
         </ul>
       </div>
@@ -490,7 +510,7 @@ footer .cols{display:grid; grid-template-columns:1fr 1fr; gap:30px}
           <li>Medicare outlays are net of offsetting receipts; defense excludes DoD civil programs.</li>
           <li>Customs duties for FY2021&#8211;22 are derived from the reported year-on-year change within &#8220;other receipts.&#8221;</li>
           <li>GDP is a fiscal-year series back-solved from CBO&#8217;s published percent-of-GDP figures, so ratios reproduce the source exactly.</li>
-          <li>&#8220;All other outlays&#8221; is a residual and absorbs the Department of Education, unemployment compensation, SBA and FDIC swings listed in section 04.</li>
+          <li>&#8220;All other outlays&#8221; is a residual and absorbs the Department of Education, unemployment compensation, SBA and FDIC swings listed in section 04. Its FY2025 breakdown by agency (section 02) comes from the Monthly Treasury Statement.</li>
         </ul>
       </div>
     </div>
@@ -941,6 +961,47 @@ moverChart('c-mov-out', OUTLAYS, MOV_RANGE);
 
 const cCore = stackChart('c-core','lg-core',{series:CORE, totalLabel:'Total outlays',
   aria:'Core federal programs versus all other spending, fiscal years 2021 to 2025'});
+
+
+/* ---- "All other outlays" drill-down (FY2025, Treasury MTS Sept 2025, Table 3) ---- */
+const ALL_OTHER = [
+  ['Agriculture', 227.4, 'SNAP food assistance, child nutrition, crop insurance and farm support'],
+  ['Health &amp; Human Services, excl. Medicare &amp; Medicaid', 224.3, 'NIH, CDC, CHIP, child care and TANF, community health centers, Indian Health Service'],
+  ['Office of Personnel Management', 128.2, 'Pensions and health benefits for retired federal civilian employees'],
+  ['Transportation', 127.6, 'Highway and transit grants to states, FAA and air traffic control'],
+  ['Homeland Security', 115.3, 'FEMA disaster relief, border and immigration enforcement, Coast Guard'],
+  ['Social Security Admin., excl. Social Security', 77.5, 'Supplemental Security Income (SSI) and SSA&#8217;s running costs'],
+  ['Other defense civil programs', 76.5, 'Military retirement pay and retiree health care (not in DoD&#8217;s budget)'],
+  ['Energy', 52.3, 'Nuclear weapons (NNSA), nuclear cleanup, national laboratories'],
+  ['Housing &amp; Urban Development', 50.5, 'Section 8 rental vouchers, public housing'],
+  ['Labor', 50.4, 'Unemployment benefits, job training'],
+  ['Justice', 44.9, 'FBI, prisons, federal prosecutors, grants to police'],
+  ['Environmental Protection Agency', 37.0, 'Water and clean-energy grants, up from $14B in FY2024'],
+  ['Education', 34.7, 'Schools and Pell grants, offset by student-loan revaluations'],
+  ['Commerce', 29.7, 'Census, weather service (NOAA), semiconductor (CHIPS) grants'],
+  ['State', 28.4, 'Embassies, diplomacy, UN contributions'],
+  ['NASA', 24.6, ''],
+  ['Interior', 22.4, 'National parks, public lands, Indian Affairs'],
+  ['Everything else', 81.3, 'Treasury operations, foreign aid, Army Corps of Engineers, NSF, courts, Congress, independent agencies (FDIC &#8722;$31B), SBA'],
+  ['Undistributed offsetting receipts', -150.2, 'Mainly agencies&#8217; employer contributions to federal retirement funds, netted out to avoid counting them twice, plus offshore oil and gas royalties']
+];
+(function(){
+  const host = document.getElementById('c-allother');
+  const max = Math.max.apply(null, ALL_OTHER.map(r=>Math.abs(r[1])));
+  const negMax = Math.abs(Math.min.apply(null, ALL_OTHER.map(r=>r[1])));
+  const zero = negMax/(max+negMax)*100;   /* position of zero on the track, % */
+  const sc = 100/(max+negMax);
+  let h = '';
+  ALL_OTHER.forEach(function(r){
+    const w = Math.abs(r[1])*sc, left = r[1]>=0 ? zero : zero-w;
+    h += '<div class="ao-row"><div class="ao-name">'+r[0]+(r[2]?'<small>'+r[2]+'</small>':'')+'</div>'+
+         '<div class="ao-track"><span class="ao-bar'+(r[1]<0?' neg':'')+'" style="left:'+left.toFixed(2)+'%;width:'+Math.max(w,0.6).toFixed(2)+'%"></span></div>'+
+         '<div class="ao-val">'+paren(Math.round(r[1]))+'</div></div>';
+  });
+  const tot = ALL_OTHER.reduce((a,r)=>a+r[1],0);
+  h += '<div class="ao-row tot"><div class="ao-name">All other outlays</div><div></div><div class="ao-val">'+fmt(tot)+'</div></div>';
+  host.innerHTML = h;
+})();
 
 /* ---- FY2026 table ---- */
 (function(){
