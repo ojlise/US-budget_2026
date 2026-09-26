@@ -147,6 +147,14 @@ section:last-of-type{border-bottom:0}
 .plot svg{display:block; width:100%; height:auto; overflow:visible}
 .duo{display:grid; grid-template-columns:1fr 1fr; gap:18px}
 
+.seg{flex-wrap:wrap}
+.gr-rank{margin-top:10px;border-top:1px solid var(--rule);padding-top:8px}
+.gr-h{font-family:var(--fm);font-size:.7rem;color:var(--ink-3);letter-spacing:.04em;margin-bottom:4px}
+.gr-r{display:flex;justify-content:space-between;gap:10px;font-size:.82rem;padding:3px 0;color:var(--ink)}
+.gr-r .lbl{display:flex;align-items:center;gap:7px;min-width:0}
+.gr-r .sw{width:10px;height:10px;border-radius:2px;flex:none}
+.gr-r .val{font-family:var(--fm);font-variant-numeric:tabular-nums}
+.gr-r.tot{border-top:1px dashed var(--rule-2);margin-top:3px;padding-top:5px;font-weight:600}
 /* ---- "All other outlays" drill-down ---- */
 .ao-row{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr) 64px;gap:12px;align-items:center;padding:7px 0;border-top:1px solid var(--rule)}
 .ao-row:first-child{border-top:0}
@@ -319,7 +327,7 @@ footer .cols{display:grid; grid-template-columns:1fr 1fr; gap:30px}
     <div class="sec-head">
       <span class="eyebrow">02 · Composition</span>
       <h2>Where it comes from, where it goes</h2>
-      <p class="note">Five complete fiscal years, side by side. Switch the scale to compare mix (share of total) or burden (percent of GDP). Click a legend entry to isolate a line.</p>
+      <p class="note">Five complete fiscal years, side by side. Switch the scale to compare mix (share of total), burden (percent of GDP), or growth (% change since FY2021, to see which items grew fastest). Click a legend entry to hide or show a line.</p>
     </div>
 
     <div class="filters">
@@ -328,6 +336,7 @@ footer .cols{display:grid; grid-template-columns:1fr 1fr; gap:30px}
         <button type="button" data-mode="abs" aria-pressed="true">$ billions</button>
         <button type="button" data-mode="share" aria-pressed="false">Share of total</button>
         <button type="button" data-mode="gdp" aria-pressed="false">% of GDP</button>
+        <button type="button" data-mode="growth" aria-pressed="false">% change since FY2021</button>
       </div>
     </div>
 
@@ -747,6 +756,7 @@ function stackChart(mountId, legendId, cfg){
 
   function draw(W){
     host.innerHTML = '';
+    if (state.mode === 'growth') { drawGrowth(W); return; }
     const H = Math.round(Math.max(300, Math.min(W * 0.52, 400)));
     const M = {t:12, r:14, b:38, l:52};
     const iw = W-M.l-M.r, ih = H-M.t-M.b;
@@ -816,6 +826,90 @@ function stackChart(mountId, legendId, cfg){
     });
     svg.appendChild(el('line',{x1:M.l,x2:M.l+iw,y1:M.t+ih,y2:M.t+ih,style:'stroke:var(--rule-2);stroke-width:1'}));
     host.appendChild(svg);
+  }
+
+
+  /* ---- growth mode: one line per item, cumulative % change vs FY2021 ---- */
+  function drawGrowth(W){
+    const yrs = YEARS;
+    const narrow = W < 560;
+    const H = Math.round(Math.max(320, Math.min(W * 0.56, 430)));
+    const M = {t:14, r: narrow ? 14 : 250, b:38, l:52};
+    const iw = W-M.l-M.r, ih = H-M.t-M.b;
+    const g = s => s.v.map(v => (v/s.v[0]-1)*100);
+    const act = cfg.series.filter(s => !state.off[s.key]).map(s => ({s:s, g:g(s)}));
+    const totV = yrs.map((_,i)=>cfg.series.reduce((a,x)=>a+x.v[i],0));
+    const tot = {s:{label:cfg.totalLabel, color:'--ink', key:'__tot'}, g: totV.map(v=>(v/totV[0]-1)*100), dash:true};
+    const all = act.concat([tot]);
+    let lo = Math.min(0, Math.min.apply(null, all.map(a=>Math.min.apply(null,a.g))));
+    let hi = Math.max(0, Math.max.apply(null, all.map(a=>Math.max.apply(null,a.g))));
+    const raw = (hi-lo)/6, mag = Math.pow(10, Math.floor(Math.log10(raw))), n = raw/mag;
+    const step = (n<=1?1:n<=2?2:n<=2.5?2.5:n<=5?5:10)*mag;
+    lo = Math.floor(lo/step)*step; hi = Math.ceil(hi/step)*step;
+    const X = i => M.l + iw*i/(yrs.length-1);
+    const Y = v => M.t + ih - (v-lo)/(hi-lo)*ih;
+    const svg = el('svg', {viewBox:'0 0 '+W+' '+H, role:'img', 'aria-label':cfg.aria+' — percent change since FY2021'});
+    for (let v=lo; v<=hi+step*1e-6; v+=step){
+      const zero = Math.abs(v) < step*1e-6;
+      svg.appendChild(el('line',{x1:M.l,x2:M.l+iw,y1:Y(v),y2:Y(v),style:'stroke:var('+(zero?'--rule-2':'--rule')+');stroke-width:'+(zero?1.5:1)}));
+      svg.appendChild(el('text',{x:M.l-9,y:Y(v)+3.5,'text-anchor':'end',
+        style:'fill:var(--ink-3);font-family:var(--fm);font-size:9.5px;font-variant-numeric:tabular-nums'},
+        (v>0?'+':v<0?'−':'')+fmt(Math.abs(v))+'%'));
+    }
+    yrs.forEach(function(y,i){
+      svg.appendChild(el('text',{x:X(i),y:M.t+ih+17,'text-anchor':'middle',
+        style:'fill:var(--ink-2);font-family:var(--fm);font-size:10px'},'FY'+y));
+    });
+    all.forEach(function(a){
+      let d=''; a.g.forEach((v,i)=>{ d += (i?'L':'M')+X(i).toFixed(1)+' '+Y(v).toFixed(1)+' '; });
+      svg.appendChild(el('path',{d:d, style:'fill:none;stroke:var('+a.s.color+');stroke-width:'+(a.dash?1.6:2.2)+';stroke-linejoin:round;stroke-linecap:round'+(a.dash?';stroke-dasharray:5 4':'')}));
+      a.g.forEach((v,i)=>{ if(!a.dash) svg.appendChild(el('circle',{cx:X(i),cy:Y(v),r:2.8,style:'fill:var('+a.s.color+')'})); });
+    });
+    /* end labels, pushed apart so they never overlap */
+    if (!narrow){
+      const L = all.map(a=>({a:a, y:Y(a.g[yrs.length-1])})).sort((p,q)=>p.y-q.y);
+      const gap = 13;
+      for (let i=1;i<L.length;i++) if (L[i].y < L[i-1].y+gap) L[i].y = L[i-1].y+gap;
+      const over = L.length ? L[L.length-1].y - (M.t+ih+4) : 0;
+      if (over > 0) L.forEach(l=>l.y-=over);
+      for (let i=0;i<L.length;i++) if (i && L[i].y < L[i-1].y+gap) L[i].y = L[i-1].y+gap;
+      L.forEach(function(l){
+        const v = l.a.g[yrs.length-1];
+        svg.appendChild(el('text',{x:M.l+iw+10,y:l.y+3.5,
+          style:'fill:var('+l.a.s.color+');font-family:var(--fs);font-size:10.5px;font-weight:'+(l.a.dash?500:600)},
+          (v>=0?'+':'−')+fmt(Math.abs(v))+'%  '+fitText(l.a.s.label, M.r-58, 10.5)));
+      });
+    }
+    const cross = el('line',{x1:0,x2:0,y1:M.t,y2:M.t+ih,style:'stroke:var(--rule-2);stroke-width:1',opacity:'0'});
+    svg.appendChild(cross);
+    const hit = el('rect',{x:M.l-10,y:M.t,width:iw+20,height:ih,fill:'transparent',style:'cursor:crosshair'});
+    svg.appendChild(hit);
+    host.appendChild(svg);
+    /* on narrow screens there is no room for end labels: list the ranking under the chart */
+    if (narrow){
+      const rank = all.slice().sort((p,q)=>q.g[yrs.length-1]-p.g[yrs.length-1]);
+      const box = document.createElement('div');
+      box.className = 'gr-rank';
+      box.innerHTML = '<div class="gr-h">FY2021 → FY2025, ranked</div>' + rank.map(a=>{
+        const v = a.g[yrs.length-1];
+        return '<div class="gr-r'+(a.dash?' tot':'')+'"><span class="lbl"><span class="sw" style="background:var('+a.s.color+')"></span>'+esc(a.s.label)+'</span><span class="val">'+(v>=0?'+':'−')+fmt(Math.abs(v))+'%</span></div>';
+      }).join('');
+      host.appendChild(box);
+    }
+    const tip = mkTip(host);
+    hit.addEventListener('pointermove', function(ev){
+      const r = svg.getBoundingClientRect(), px = (ev.clientX-r.left)/r.width*W;
+      let best=0, bd=1e9; yrs.forEach((_,i)=>{ const dd=Math.abs(X(i)-px); if(dd<bd){bd=dd;best=i;} });
+      cross.setAttribute('x1',X(best)); cross.setAttribute('x2',X(best)); cross.setAttribute('opacity','1');
+      let h = '<div class="t-h">FY'+yrs[best]+' vs FY2021</div>';
+      act.slice().sort((p,q)=>q.g[best]-p.g[best]).forEach(function(a){
+        h += '<div class="t-r"><span class="lbl"><span class="sw" style="background:var('+a.s.color+')"></span>'+esc(a.s.label)+'</span><span class="val">'+fmtS(Math.round(a.g[best]))+'%</span></div>';
+      });
+      h += '<div class="t-r t-tot"><span class="lbl">'+esc(cfg.totalLabel)+'</span><span class="val">'+fmtS(Math.round(tot.g[best]))+'%</span></div>';
+      const hr = host.getBoundingClientRect();
+      showTip(tip, host, ev.clientX-hr.left, ev.clientY-hr.top, h);
+    });
+    hit.addEventListener('pointerleave', function(){ cross.setAttribute('opacity','0'); hideTip(tip); });
   }
 
   const lg = document.getElementById(legendId);
@@ -942,7 +1036,7 @@ const cRec = stackChart('c-rec','lg-rec',{series:RECEIPTS, totalLabel:'Total rec
 const cOut = stackChart('c-out','lg-out',{series:OUTLAYS, totalLabel:'Total outlays',
   aria:'Federal outlays by program, fiscal years 2021 to 2025'});
 
-const SUBS = {abs:'$ billions', share:'share of total, percent', gdp:'percent of GDP'};
+const SUBS = {abs:'$ billions', share:'share of total, percent', gdp:'percent of GDP', growth:'cumulative % change since FY2021, nominal dollars · dashed line = total'};
 document.querySelectorAll('.seg button').forEach(function(b){
   b.addEventListener('click', function(){
     document.querySelectorAll('.seg button').forEach(x=>x.setAttribute('aria-pressed','false'));
