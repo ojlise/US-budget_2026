@@ -259,41 +259,41 @@ footer .cols{display:grid; grid-template-columns:1fr 1fr; gap:30px}
 <div class="wrap">
 
   <div class="doc-bar">
-    <span class="doc-tag">Standalone copy &middot; data through August 2026</span>
+    <span class="doc-tag">Standalone copy &middot; data through September 2026 &middot; FY2026 preliminary</span>
     <button type="button" id="themeBtn" class="tbtn" aria-pressed="false">Dark mode</button>
   </div>
 
   <header class="masthead">
     <span class="eyebrow">Fiscal years 2021 – 2026 · Congressional Budget Office &amp; U.S. Treasury</span>
     <h1>The federal budget,<br>five years of receipts and outlays</h1>
-    <p class="lede">Between FY2021 and FY2025 the deficit fell by a trillion dollars. Almost none of that came from restraint: revenue rose $1.19T while pandemic programs worth $1.6T expired — and underneath, the permanent core of the budget grew $1.79T. That roll-off is finished. What&#8217;s left is the baseline.</p>
+    <p class="lede">Between FY2021 and FY2025 the deficit fell by a trillion dollars. Almost none of that came from restraint: revenue rose $1.19T while pandemic-era spending worth $1.6T rolled off — and underneath, the permanent core of the budget grew $1.79T. That roll-off is finished, and FY2026 shows what is left: the deficit widened again, by $218B to $1.99T.</p>
     <div class="byline">
       <span>Federal fiscal year runs 1 Oct – 30 Sep</span>
       <span>All figures in billions of current dollars</span>
-      <span>FY2026 incomplete — 11 months through August</span>
+      <span>FY2026 preliminary — CBO, 8 Oct 2026</span>
     </div>
   </header>
 
   <div class="stats" role="list">
     <div class="stat" role="listitem">
-      <span class="stat-k">FY2025 receipts</span>
-      <span class="stat-v">$5.24T</span>
-      <span class="stat-s">17.3% of GDP · <b>+29%</b> vs FY2021</span>
+      <span class="stat-k">FY2026 receipts</span>
+      <span class="stat-v">$5.40T</span>
+      <span class="stat-s">16.7% of GDP · <b>+34%</b> vs FY2021</span>
     </div>
     <div class="stat" role="listitem">
-      <span class="stat-k">FY2025 outlays</span>
-      <span class="stat-v">$7.01T</span>
-      <span class="stat-s">23.1% of GDP · <b>+2.8%</b> vs FY2021</span>
+      <span class="stat-k">FY2026 outlays</span>
+      <span class="stat-v">$7.40T</span>
+      <span class="stat-s">22.9% of GDP · <b>+8.4%</b> vs FY2021</span>
     </div>
     <div class="stat" role="listitem">
-      <span class="stat-k">FY2025 deficit</span>
-      <span class="stat-v neg">$1.78T</span>
-      <span class="stat-s">5.9% of GDP · 50-yr avg <b>3.8%</b></span>
+      <span class="stat-k">FY2026 deficit</span>
+      <span class="stat-v neg">$1.99T</span>
+      <span class="stat-s">6.2% of GDP · 50-yr avg <b>3.8%</b></span>
     </div>
     <div class="stat" role="listitem">
-      <span class="stat-k">Net interest, FY2025</span>
-      <span class="stat-v">$1.03T</span>
-      <span class="stat-s">First year above $1T · <b>2.5&times;</b> FY2021</span>
+      <span class="stat-k">Net interest, FY2026</span>
+      <span class="stat-v">$1.14T</span>
+      <span class="stat-s">+11% on FY2025 · <b>2.8&times;</b> FY2021</span>
     </div>
   </div>
 
@@ -302,17 +302,17 @@ footer .cols{display:grid; grid-template-columns:1fr 1fr; gap:30px}
     <div class="sec-head">
       <span class="eyebrow">01 · The gap</span>
       <h2>Revenue climbed back. Spending never came down.</h2>
-      <p class="note">Receipts collapsed and rebounded on the 2021&#8211;22 inflation and capital-gains surge, dipped in FY2023, and have risen since. Outlays fell from their pandemic peak but flattened at a level about $2.4T above FY2019. The shaded band is the deficit. Measured against GDP — the right frame for comparing years — the gap has been stuck near 6% every year since FY2023, well above the 3.8% fifty-year average. The dashed FY2026 point is CBO&#8217;s February baseline; its July update raised the full-year deficit to $2.1T after the tariff ruling (section 05).</p>
+      <p class="note">Receipts collapsed and rebounded on the 2021&#8211;22 inflation and capital-gains surge, dipped in FY2023, and have risen since. Outlays fell from their pandemic peak but flattened at a level about $2.4T above FY2019. The shaded band is the deficit. Measured against GDP — the right frame for comparing years — the gap has been stuck near 6% every year since FY2023, well above the 3.8% fifty-year average. FY2026 came in at $1.99T, or 6.2% of GDP — $140B above CBO&#8217;s February baseline, mainly because of the tariff ruling (section 05).</p>
     </div>
     <div class="duo">
       <div class="plot">
         <div class="plot-title">Receipts and outlays</div>
-        <div class="plot-sub">$ trillions · FY2026 = CBO February 2026 baseline ($1.9T deficit)</div>
+        <div class="plot-sub">$ trillions · FY2026 = preliminary actual (CBO, October 2026)</div>
         <div id="c-gap-abs"></div>
       </div>
       <div class="plot">
         <div class="plot-title">Same figures as a share of the economy</div>
-        <div class="plot-sub">percent of GDP · FY2026 = CBO February 2026 baseline</div>
+        <div class="plot-sub">percent of GDP · FY2026 = preliminary actual</div>
         <div id="c-gap-gdp"></div>
       </div>
     </div>
@@ -327,7 +327,7 @@ footer .cols{display:grid; grid-template-columns:1fr 1fr; gap:30px}
     <div class="sec-head">
       <span class="eyebrow">02 · Composition</span>
       <h2>Where it comes from, where it goes</h2>
-      <p class="note">Five complete fiscal years, side by side. Switch the scale to compare mix (share of total), burden (percent of GDP), or growth (% change since FY2021, to see which items grew fastest). Click a legend entry to hide or show a line.</p>
+      <p class="note">Five complete fiscal years, side by side (the FY2026 breakdown by program follows once Treasury&#8217;s year-end detail is in; totals and section 05 already cover FY2026). Switch the scale to compare mix (share of total), burden (percent of GDP), or growth (% change since FY2021, to see which items grew fastest). Click a legend entry to hide or show a line.</p>
     </div>
 
     <div class="filters">
@@ -363,7 +363,7 @@ footer .cols{display:grid; grid-template-columns:1fr 1fr; gap:30px}
 
     <div class="callout">
       <div class="ch">Read the orange band on the revenue chart</div>
-      <p>Customs duties went from $77B in FY2024 to $195B in FY2025 — a 153% jump, and the largest proportional change anywhere in the budget. It did not last: in February 2026 the Supreme Court struck down the IEEPA tariffs, and Treasury had refunded roughly $110B by August. CBO has since cut expected FY2026 tariff revenue by about $250B, or 60%.</p>
+      <p>Customs duties went from $77B in FY2024 to $195B in FY2025 — a 153% jump, and the largest proportional change anywhere in the budget. It did not last: in February 2026 the Supreme Court struck down the IEEPA tariffs, and about $130B had been refunded by the end of FY2026. Customs receipts fell 11% to $172B in FY2026, instead of the further rise CBO had expected.</p>
     </div>
   </section>
 
@@ -426,23 +426,23 @@ footer .cols{display:grid; grid-template-columns:1fr 1fr; gap:30px}
   <!-- ======================= FY2026 ======================= -->
   <section id="fy26">
     <div class="sec-head">
-      <span class="eyebrow">05 · The year in progress</span>
-      <h2>FY2026, eleven months in</h2>
-      <p class="note">The fiscal year closes 30 September 2026. Through August, receipts and outlays were each up about 3% — but the raw deficit looks $6B <em>better</em> than last year only because of a Labor Day payment shift. Adjusted for timing, FY2026 is running $82B worse. CBO&#8217;s July estimate puts the full year at a $2.1T deficit, $200B above its own February baseline, driven almost entirely by the collapse in tariff revenue.</p>
+      <span class="eyebrow">05 · The latest year</span>
+      <h2>FY2026, the full year</h2>
+      <p class="note">FY2026 closed on 30 September. Receipts rose $169B (3%) but outlays rose $386B (6%), so the deficit widened by $218B to $1.99T — 6.2% of GDP, and $140B more than CBO projected in February. The figures are CBO&#8217;s preliminary year-end estimates.</p>
     </div>
     <div class="tscroll">
       <table>
-        <caption>October – August · $ billions · change adjusted for payment-timing shifts</caption>
+        <caption>October – September · $ billions · FY2026 preliminary (CBO, 8 October 2026)</caption>
         <thead>
           <tr><th scope="col">Line</th><th scope="col">FY2025</th><th scope="col">FY2026</th><th scope="col">Change</th><th scope="col" style="min-width:160px">&nbsp;</th></tr>
         </thead>
         <tbody id="tb-fy26"></tbody>
       </table>
     </div>
-    <p class="note" style="margin-top:10px">The change column is CBO&#8217;s timing-adjusted figure, so it will not always equal the difference between the two raw columns beside it. On the deficit line a negative change means the shortfall <em>widened</em>.</p>
+    <p class="note" style="margin-top:10px">Changes are as published by CBO and can differ from the two columns beside them by $1&#8211;2B of rounding. &#8220;All other outlays&#8221; is the remainder of total outlays. On the deficit line a negative change means the shortfall <em>widened</em>.</p>
     <div class="callout">
       <div class="ch">Two policy shocks are moving these numbers</div>
-      <p>Corporate receipts are down 25% year-on-year because the 2025 reconciliation act restored large up-front deductions for capital investment. Customs duties are flat despite higher statutory rates because the IEEPA tariffs were voided and refunded. Net interest, meanwhile, added $111B — more than any program on the spending side.</p>
+      <p>Corporate receipts fell 16% because the 2025 reconciliation act restored large up-front deductions for capital investment. Customs duties fell 11% instead of rising, because the IEEPA tariffs were voided and about $130B was refunded. Net interest, meanwhile, added $115B — more than any program on the spending side.</p>
     </div>
   </section>
 
@@ -457,7 +457,7 @@ footer .cols{display:grid; grid-template-columns:1fr 1fr; gap:30px}
       <div class="stat">
         <span class="stat-k">Deficit, 2036</span>
         <span class="stat-v neg">$3.1T</span>
-        <span class="stat-s">6.7% of GDP, up from <b>5.8%</b> in 2026</span>
+        <span class="stat-s">6.7% of GDP · February baseline had <b>5.8%</b> for 2026 (actual 6.2%)</span>
       </div>
       <div class="stat">
         <span class="stat-k">Debt held by public</span>
@@ -506,10 +506,9 @@ footer .cols{display:grid; grid-template-columns:1fr 1fr; gap:30px}
         <ul>
           <li><a href="https://www.cbo.gov/publication/61307">CBO, <em>Monthly Budget Review: Summary for Fiscal Year 2025</em></a> — FY2023&#8211;25 receipts, outlays, totals</li>
           <li><a href="https://www.cbo.gov/publication/58592">CBO, <em>Monthly Budget Review: Summary for Fiscal Year 2022</em></a> — FY2020&#8211;22 detail</li>
-          <li><a href="https://www.cbo.gov/publication/61984">CBO, <em>Monthly Budget Review: August 2026</em></a> — FY2026 through August</li>
+          <li><a href="https://www.cbo.gov/publication/61985">CBO, <em>Monthly Budget Review: September 2026</em></a> — FY2026 full year (preliminary): totals, receipts by source, outlays by category</li>
           <li><a href="https://www.cbo.gov/publication/62105">CBO, <em>The Budget and Economic Outlook: 2026 to 2036</em></a> — projections</li>
           <li><a href="https://fiscaldata.treasury.gov/datasets/monthly-treasury-statement/">U.S. Treasury, <em>Monthly Treasury Statement</em>, September 2025, Table 3</a> — FY2025 outlays by agency</li>
-          <li><a href="https://www.cbo.gov/publication/61983">CBO, <em>Monthly Budget Review: July 2026</em></a> — revised FY2026 deficit estimate</li>
         </ul>
       </div>
       <div>
@@ -536,7 +535,7 @@ const GDP = {2021:23125, 2022:25502, 2023:27414, 2024:28929, 2025:30260, 2026:32
 
 const TOTALS = {
   2021:{r:4047,o:6822}, 2022:{r:4897,o:6273}, 2023:{r:4441,o:6135},
-  2024:{r:4918,o:6735}, 2025:{r:5235,o:7010}, 2026:{r:5500,o:7400}
+  2024:{r:4918,o:6735}, 2025:{r:5235,o:7010}, 2026:{r:5403,o:7396}
 };
 
 const RECEIPTS = [
@@ -566,26 +565,26 @@ const CORE = [
 
 const FY26 = [
   {g:'Receipts', rows:[
-    ['Individual income taxes', 2358, 2547, 189],
-    ['Payroll taxes', 1614, 1664, 50],
-    ['Corporate income taxes', 390, 294, -96],
-    ['Customs duties incl. tariffs', 165, 167, 1],
-    ['Other receipts', 164, 173, 9],
-    ['Total receipts', 4691, 4845, 154, true]
+    ['Individual income taxes', 2656, 2844, 188],
+    ['Payroll taxes', 1748, 1815, 67],
+    ['Corporate income taxes', 452, 382, -70],
+    ['Customs duties incl. tariffs', 195, 172, -22],
+    ['Other receipts', 183, 190, 6],
+    ['Total receipts', 5235, 5403, 169, true]
   ]},
   {g:'Outlays', rows:[
-    ['Social Security', 1435, 1514, 78],
-    ['Medicare', 961, 976, 73],
-    ['Medicaid', 608, 655, 47],
-    ['Net interest on the public debt', 941, 1052, 111],
-    ['Defense (DoD military)', 797, 833, 41],
-    ['Veterans Affairs', 359, 394, 49],
-    ['Dept. of Education', 140, 61, -79],
-    ['All other outlays', 1423, 1327, -85],
-    ['Total outlays', 6664, 6812, 235, true]
+    ['Social Security', 1569, 1654, 86],
+    ['Medicare', 992, 1069, 77],
+    ['Medicaid', 668, 723, 55],
+    ['Net interest on the public debt', 1028, 1143, 115],
+    ['Defense (DoD military)', 868, 916, 48],
+    ['Veterans Affairs', 377, 416, 39],
+    ['Dept. of Education', 35, 75, 41],
+    ['All other outlays', 1473, 1400, -75],
+    ['Total outlays', 7010, 7396, 386, true]
   ]},
   {g:'Deficit', rows:[
-    ['Deficit for the 11 months', -1973, -1967, -82, true]
+    ['Deficit for the year', -1775, -1993, -218, true]
   ]}
 ];
 
@@ -720,7 +719,7 @@ function lineChart(mountId, cfg){
       style:'fill:var(--ink-3);font-family:var(--fm);font-size:9.5px'}, "'"+String(y).slice(2)));
   });
   svg.appendChild(el('text', {x:X(yrs.length-1), y:M.t+ih+29, 'text-anchor':'middle',
-    style:'fill:var(--ink-3);font-family:var(--fm);font-size:8px;letter-spacing:.06em'}, 'Feb. proj.'));
+    style:'fill:var(--ink-3);font-family:var(--fm);font-size:8px;letter-spacing:.06em'}, 'prelim.'));
 
   const cross = el('line', {x1:0,x2:0,y1:M.t,y2:M.t+ih, style:'stroke:var(--rule-2);stroke-width:1', opacity:'0'});
   svg.appendChild(cross);
@@ -1010,7 +1009,7 @@ function moverChart(mountId, series, range){
 /* ============================ BUILD ============================ */
 const gapYears = [2021,2022,2023,2024,2025,2026];
 lineChart('c-gap-abs', {
-  years: gapYears, projFrom: 4,
+  years: gapYears, projFrom: 5,
   aria: 'Federal receipts and outlays in trillions of dollars, fiscal years 2021 to 2026',
   series: [
     {label:'Receipts', color:'--s1', above:false, v: gapYears.map(y=>TOTALS[y].r/1000)},
@@ -1020,7 +1019,7 @@ lineChart('c-gap-abs', {
   fmtVal:  v => '$'+v.toFixed(2)+'T'
 });
 lineChart('c-gap-gdp', {
-  years: gapYears, projFrom: 4,
+  years: gapYears, projFrom: 5,
   aria: 'Federal receipts and outlays as a percent of GDP, fiscal years 2021 to 2026',
   series: [
     {label:'Receipts', color:'--s1', above:false, v: gapYears.map(y=>TOTALS[y].r/GDP[y]*100)},
@@ -1100,7 +1099,7 @@ const ALL_OTHER = [
 /* ---- FY2026 table ---- */
 (function(){
   const tb = document.getElementById('tb-fy26');
-  const maxAbs = 235;
+  const maxAbs = 386;
   FY26.forEach(function(grp, gi){
     const hr = document.createElement('tr');
     hr.className = 'tot' + (gi ? ' rule-top' : '');
