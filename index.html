@@ -327,7 +327,7 @@ footer .cols{display:grid; grid-template-columns:1fr 1fr; gap:30px}
     <div class="sec-head">
       <span class="eyebrow">02 · Composition</span>
       <h2>Where it comes from, where it goes</h2>
-      <p class="note">Receipts run through FY2026; outlays by program stop at FY2025 until Treasury publishes its September 2026 statement (needed for refundable tax credits). Switch the scale to compare mix (share of total), burden (percent of GDP), or growth (% change since FY2021, to see which items grew fastest). Click a legend entry to hide or show a line.</p>
+      <p class="note">Six fiscal years, side by side; FY2026 figures are CBO&#8217;s preliminary year-end estimates. Switch the scale to compare mix (share of total), burden (percent of GDP), or growth (% change since FY2021, to see which items grew fastest). Click a legend entry to hide or show a line.</p>
     </div>
 
     <div class="filters">
@@ -349,13 +349,14 @@ footer .cols{display:grid; grid-template-columns:1fr 1fr; gap:30px}
 
     <div class="plot">
       <div class="plot-title">Money out — outlays by program</div>
-      <div class="plot-sub" id="sub-out">$ billions · fiscal years 2021&#8211;2025</div>
+      <div class="plot-sub" id="sub-out">$ billions · fiscal years 2021&#8211;2026 (FY2026 preliminary)</div>
       <div id="c-out"></div>
       <div class="legend" id="lg-out"></div>
     </div>
 
     <div class="plot">
       <div class="plot-title">What is inside &#8220;All other outlays&#8221; — FY2025</div>
+      <div class="plot-sub" style="margin-top:2px">FY2026 agency detail will replace this once the year-end Treasury table is added</div>
       <div class="plot-sub">$ billions · the red segment on the chart above ($1,283B), broken down by agency</div>
       <div id="c-allother" style="margin-top:10px"></div>
       <p class="note" style="margin-top:10px">Agency totals from the Monthly Treasury Statement for September 2025. Lines marked &#8220;excl.&#8221; have the programs already shown separately above taken out: Medicare and Medicaid from HHS, Social Security benefits from SSA, and net interest and refundable tax credits from Treasury. The rows sum to $1,283B.</p>
@@ -371,17 +372,17 @@ footer .cols{display:grid; grid-template-columns:1fr 1fr; gap:30px}
   <section id="movers">
     <div class="sec-head">
       <span class="eyebrow">03 · The movers</span>
-      <h2>What actually changed, FY2021 to FY2025</h2>
-      <p class="note">Every line item&#8217;s four-year dollar change, both panels on one shared scale so the bars are directly comparable. Net interest is the single largest increase anywhere in the budget — it grew more than Social Security did, from a base one third the size.</p>
+      <h2>What actually changed, FY2021 to FY2026</h2>
+      <p class="note">Every line item&#8217;s five-year dollar change, both panels on one shared scale so the bars are directly comparable. Net interest is the single largest increase anywhere in the budget — it grew more than Social Security did, from a base one third the size.</p>
     </div>
     <div class="plot">
       <div class="plot-title">Receipts — change by source</div>
-      <div class="plot-sub">$ billions, FY2021 → FY2025</div>
+      <div class="plot-sub">$ billions, FY2021 → FY2026</div>
       <div id="c-mov-rec"></div>
     </div>
     <div class="plot">
       <div class="plot-title">Outlays — change by program</div>
-      <div class="plot-sub">$ billions, FY2021 → FY2025 · shared scale with the chart above</div>
+      <div class="plot-sub">$ billions, FY2021 → FY2026 · shared scale with the chart above</div>
       <div id="c-mov-out"></div>
     </div>
   </section>
@@ -390,8 +391,8 @@ footer .cols{display:grid; grid-template-columns:1fr 1fr; gap:30px}
   <section id="baseline">
     <div class="sec-head">
       <span class="eyebrow">04 · Signal and noise</span>
-      <h2>The core grew $1.79T. Everything else fell $1.60T.</h2>
-      <p class="note">Split the spending side into two things that behave completely differently. <b>Core</b> — Social Security, Medicare, Medicaid, defense, veterans&#8217; benefits and interest on the debt — is demographic and contractual, and it compounds at roughly 10% a year. <b>Everything else</b> is discretionary agencies plus a pile of one-off accounting events, and it has been shrinking as pandemic programs unwound. The two nearly cancelled. They will not cancel again: the roll-off is over, and the core is now 78% of all federal spending.</p>
+      <h2>The core grew $2.21T. Everything else fell $1.64T.</h2>
+      <p class="note">Split the spending side into two things that behave completely differently. <b>Core</b> — Social Security, Medicare, Medicaid, defense, veterans&#8217; benefits and interest on the debt — is demographic and contractual, and it compounds at roughly 10% a year. <b>Everything else</b> is discretionary agencies plus a pile of one-off accounting events, and it has been shrinking as pandemic programs unwound. The two nearly cancelled. They will not cancel again: the roll-off is over, and the core is now 80% of all federal spending.</p>
     </div>
     <div class="plot">
       <div class="plot-title">Core programs versus everything else</div>
@@ -492,7 +493,7 @@ footer .cols{display:grid; grid-template-columns:1fr 1fr; gap:30px}
       <table id="ledger-table">
         <caption>U.S. federal receipts and outlays · $ billions</caption>
         <thead>
-          <tr><th scope="col">&nbsp;</th><th scope="col">FY2021</th><th scope="col">FY2022</th><th scope="col">FY2023</th><th scope="col">FY2024</th><th scope="col">FY2025</th></tr>
+          <tr><th scope="col">&nbsp;</th><th scope="col">FY2021</th><th scope="col">FY2022</th><th scope="col">FY2023</th><th scope="col">FY2024</th><th scope="col">FY2025</th><th scope="col">FY2026</th></tr>
         </thead>
         <tbody id="tb-ledger"></tbody>
       </table>
@@ -506,6 +507,7 @@ footer .cols{display:grid; grid-template-columns:1fr 1fr; gap:30px}
         <ul>
           <li><a href="https://www.cbo.gov/publication/61307">CBO, <em>Monthly Budget Review: Summary for Fiscal Year 2025</em></a> — FY2023&#8211;25 receipts, outlays, totals</li>
           <li><a href="https://www.cbo.gov/publication/58592">CBO, <em>Monthly Budget Review: Summary for Fiscal Year 2022</em></a> — FY2020&#8211;22 detail</li>
+          <li><a href="https://www.americanactionforum.org/insight/u-s-treasury-fy-2026-deficit-totaled-2-trillion/">American Action Forum, <em>U.S. Treasury: FY 2026 Deficit Totaled $2 Trillion</em></a> (18 Oct 2026) — FY2026 refundable credit outlays from the September 2026 Monthly Treasury Statement</li>
           <li><a href="https://www.cbo.gov/publication/61985">CBO, <em>Monthly Budget Review: September 2026</em></a> — FY2026 full year (preliminary): totals, receipts by source, outlays by category</li>
           <li><a href="https://www.cbo.gov/publication/62105">CBO, <em>The Budget and Economic Outlook: 2026 to 2036</em></a> — projections</li>
           <li><a href="https://fiscaldata.treasury.gov/datasets/monthly-treasury-statement/">U.S. Treasury, <em>Monthly Treasury Statement</em>, September 2025, Table 3</a> — FY2025 outlays by agency</li>
@@ -519,6 +521,7 @@ footer .cols{display:grid; grid-template-columns:1fr 1fr; gap:30px}
           <li>Customs duties for FY2021&#8211;22 are derived from the reported year-on-year change within &#8220;other receipts.&#8221;</li>
           <li>GDP is a fiscal-year series back-solved from CBO&#8217;s published percent-of-GDP figures, so ratios reproduce the source exactly.</li>
           <li>&#8220;All other outlays&#8221; is a residual and absorbs the Department of Education, unemployment compensation, SBA and FDIC swings listed in section 04. Its FY2025 breakdown by agency (section 02) comes from the Monthly Treasury Statement.</li>
+          <li>Refundable tax credits for FY2026 are the ACA premium tax credit ($126B), earned income tax credit ($68B) and child tax credit ($29B) as reported from Treasury&#8217;s September 2026 statement; the few smaller refundable credits (about $3B in FY2025) fall into &#8220;All other outlays&#8221; that year.</li>
         </ul>
       </div>
     </div>
@@ -530,8 +533,9 @@ footer .cols{display:grid; grid-template-columns:1fr 1fr; gap:30px}
 "use strict";
 
 /* ============================ DATA ============================ */
-const YEARS = [2021,2022,2023,2024,2025];
-const YEARS_REC = [2021,2022,2023,2024,2025,2026];   /* receipts already have FY2026 (CBO, Sept 2026 review) */
+const YEARS = [2021,2022,2023,2024,2025,2026];   /* FY2026 preliminary (CBO, Sept 2026 review) */
+const YEARS_REC = YEARS;
+const NL = YEARS.length-1;   /* index of the latest year */
 const GDP = {2021:23125, 2022:25502, 2023:27414, 2024:28929, 2025:30260, 2026:32300};
 
 const TOTALS = {
@@ -549,19 +553,19 @@ const RECEIPTS = [
 ];
 
 const OUTLAYS = [
-  {key:'ss',  label:'Social Security', color:'--s1', v:[1123,1206,1342,1448,1569]},
-  {key:'mcr', label:'Medicare', color:'--s2', v:[ 692, 751, 844, 870, 992]},
-  {key:'mcd', label:'Medicaid', color:'--s3', v:[ 521, 592, 616, 618, 668]},
-  {key:'int', label:'Net interest on the public debt', color:'--s4', v:[ 413, 534, 710, 949,1028]},
-  {key:'def', label:'Defense (DoD military)', color:'--s5', v:[ 718, 727, 776, 826, 868]},
-  {key:'va',  label:'Veterans Affairs', color:'--s6', v:[ 245, 274, 301, 325, 377]},
-  {key:'rtc', label:'Refundable tax credits', color:'--s7', v:[ 778, 291, 171, 199, 225]},
-  {key:'oth', label:'All other outlays', color:'--s8', v:[2332,1898,1375,1500,1283]}
+  {key:'ss',  label:'Social Security', color:'--s1', v:[1123,1206,1342,1448,1569,1654]},
+  {key:'mcr', label:'Medicare', color:'--s2', v:[ 692, 751, 844, 870, 992,1069]},
+  {key:'mcd', label:'Medicaid', color:'--s3', v:[ 521, 592, 616, 618, 668,723]},
+  {key:'int', label:'Net interest on the public debt', color:'--s4', v:[ 413, 534, 710, 949,1028,1143]},
+  {key:'def', label:'Defense (DoD military)', color:'--s5', v:[ 718, 727, 776, 826, 868,916]},
+  {key:'va',  label:'Veterans Affairs', color:'--s6', v:[ 245, 274, 301, 325, 377,416]},
+  {key:'rtc', label:'Refundable tax credits', color:'--s7', v:[ 778, 291, 171, 199, 225,223]},
+  {key:'oth', label:'All other outlays', color:'--s8', v:[2332,1898,1375,1500,1283,1252]}
 ];
 
 const CORE = [
-  {key:'core', label:'Core programs + interest', color:'--s1', v:[3712,4084,4589,5036,5502]},
-  {key:'rest', label:'Everything else', color:'--s2', v:[3110,2189,1546,1699,1508]}
+  {key:'core', label:'Core programs + interest', color:'--s1', v:[3712,4084,4589,5036,5502,5921]},
+  {key:'rest', label:'Everything else', color:'--s2', v:[3110,2189,1546,1699,1508,1475]}
 ];
 
 const FY26 = [
@@ -890,7 +894,7 @@ function stackChart(mountId, legendId, cfg){
       const rank = all.slice().sort((p,q)=>q.g[yrs.length-1]-p.g[yrs.length-1]);
       const box = document.createElement('div');
       box.className = 'gr-rank';
-      box.innerHTML = '<div class="gr-h">FY2021 → FY2025, ranked</div>' + rank.map(a=>{
+      box.innerHTML = '<div class="gr-h">FY2021 → FY'+yrs[yrs.length-1]+', ranked</div>' + rank.map(a=>{
         const v = a.g[yrs.length-1];
         return '<div class="gr-r'+(a.dash?' tot':'')+'"><span class="lbl"><span class="sw" style="background:var('+a.s.color+')"></span>'+esc(a.s.label)+'</span><span class="val">'+(v>=0?'+':'−')+fmt(Math.abs(v))+'%</span></div>';
       }).join('');
@@ -936,7 +940,7 @@ function stackChart(mountId, legendId, cfg){
 /* ============================ CHANGE BARS ============================ */
 function moverChart(mountId, series, range){
   const host = document.getElementById(mountId);
-  const rows = series.map(s => ({label:s.label, color:s.color, d:s.v[4]-s.v[0], from:s.v[0], to:s.v[4]}))
+  const rows = series.map(s => ({label:s.label, color:s.color, d:s.v[NL]-s.v[0], from:s.v[0], to:s.v[NL]}))
                      .sort((a,b)=>b.d-a.d);
 
   responsive(host, function(W){
@@ -954,7 +958,7 @@ function moverChart(mountId, series, range){
     const px   = v => (v / (range.max - range.min)) * span;
 
     const svg = el('svg', {viewBox:'0 0 '+W+' '+H, role:'img',
-      'aria-label':'Dollar change by line item, FY2021 to FY2025'});
+      'aria-label':'Dollar change by line item, FY2021 to FY2026'});
     svg.appendChild(el('line', {x1:zx, x2:zx, y1:padT, y2:padT+rows.length*rh+2,
       style:'stroke:var(--rule-2);stroke-width:1'}));
 
@@ -973,7 +977,7 @@ function moverChart(mountId, series, range){
         showTip(tip, host, ev.clientX-hr.left, ev.clientY-hr.top,
           '<div class="t-h">'+esc(r.label)+'</div>'+
           '<div class="t-r"><span class="lbl">FY2021</span><span class="val">$'+fmt(r.from)+'B</span></div>'+
-          '<div class="t-r"><span class="lbl">FY2025</span><span class="val">$'+fmt(r.to)+'B</span></div>'+
+          '<div class="t-r"><span class="lbl">FY2026</span><span class="val">$'+fmt(r.to)+'B</span></div>'+
           '<div class="t-r t-tot"><span class="lbl">Change</span><span class="val">'+fmtS(r.d)+'B ('+fmtS(Math.round(r.d/r.from*100))+'%)</span></div>');
       }
       band.addEventListener('pointermove', over);
@@ -1034,7 +1038,7 @@ lineChart('c-gap-gdp', {
 const cRec = stackChart('c-rec','lg-rec',{series:RECEIPTS, years:YEARS_REC, totalLabel:'Total receipts',
   aria:'Federal receipts by source, fiscal years 2021 to 2026'});
 const cOut = stackChart('c-out','lg-out',{series:OUTLAYS, totalLabel:'Total outlays',
-  aria:'Federal outlays by program, fiscal years 2021 to 2025'});
+  aria:'Federal outlays by program, fiscal years 2021 to 2026'});
 
 const SUBS = {abs:'$ billions', share:'share of total, percent', gdp:'percent of GDP', growth:'cumulative % change since FY2021, nominal dollars · dashed line = total'};
 document.querySelectorAll('.seg button').forEach(function(b){
@@ -1044,17 +1048,17 @@ document.querySelectorAll('.seg button').forEach(function(b){
     const m = b.dataset.mode;
     cRec.setMode(m); cOut.setMode(m);
     document.getElementById('sub-rec').textContent = SUBS[m]+' · fiscal years 2021–2026 (FY2026 preliminary)';
-    document.getElementById('sub-out').textContent = SUBS[m]+' · fiscal years 2021–2025';
+    document.getElementById('sub-out').textContent = SUBS[m]+' · fiscal years 2021–2026 (FY2026 preliminary)';
   });
 });
 
-const MOV_D = RECEIPTS.concat(OUTLAYS).map(s => s.v[4]-s.v[0]);
+const MOV_D = RECEIPTS.concat(OUTLAYS).map(s => s.v[NL]-s.v[0]);
 const MOV_RANGE = {min: Math.min.apply(null, MOV_D), max: Math.max.apply(null, MOV_D)};
 moverChart('c-mov-rec', RECEIPTS, MOV_RANGE);
 moverChart('c-mov-out', OUTLAYS, MOV_RANGE);
 
 const cCore = stackChart('c-core','lg-core',{series:CORE, totalLabel:'Total outlays',
-  aria:'Core federal programs versus all other spending, fiscal years 2021 to 2025'});
+  aria:'Core federal programs versus all other spending, fiscal years 2021 to 2026'});
 
 
 /* ---- "All other outlays" drill-down (FY2025, Treasury MTS Sept 2025, Table 3) ---- */
@@ -1140,7 +1144,7 @@ const ALL_OTHER = [
       const tr = document.createElement('tr');
       tr.className = 'sub';
       tr.innerHTML = '<td><span class="swatch" style="background:var('+s.color+')"></span>'+esc(s.label)+'</td>' +
-        s.v.slice(0,YEARS.length).map(v=>'<td'+(v<0?' class="neg"':'')+'>'+paren(v)+'</td>').join('');
+        s.v.map(v=>'<td'+(v<0?' class="neg"':'')+'>'+paren(v)+'</td>').join('');
       tb.appendChild(tr);
     });
   }
